@@ -41,6 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BookBG
+    uniqueID: 3327573737
+    locked: 0
+  - name: BookWorld
+    uniqueID: 3664840467
+    locked: 0
+  - name: BookPlayer
+    uniqueID: 173500203
+    locked: 0
+  - name: BookFG
+    uniqueID: 2833494665
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
