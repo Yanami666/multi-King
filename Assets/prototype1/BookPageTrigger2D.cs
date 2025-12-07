@@ -1,11 +1,15 @@
-using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// 玩家碰到 trigger 时：
-/// 1) 旧画面上渐渐盖上一层白（0 -> 100）
-/// 2) 在完全白的时候，直接翻页 + 切换 spread
-/// 3) 白色渐渐退去（100 -> 0），只看到新画面从白里出现
+/// 玩家碰到 trigger：
+/// 1) FadeOverlay 从当前 alpha 渐变到 1（完全白）
+/// 2) 渐变结束的瞬间：切 spread + TurnToPage
+/// 3) 再从 1 渐变回 0，露出新页面
+///
+/// When the player enters the trigger:
+/// 1) FadeOverlay fades to 1 (full white)
+/// 2) At the moment it reaches 1: switch spread + turn page
+/// 3) Then fade back from 1 to 0, revealing the new page.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class BookPageTrigger2D : MonoBehaviour
@@ -19,12 +23,12 @@ public class BookPageTrigger2D : MonoBehaviour
     [Header("玩家 Tag")]
     public string playerTag = "Player";
 
-    [Header("Alpha 渐变控制 / Alpha fade controller")]
+    [Header("Alpha 渐变控制 / Fade overlay")]
     public SpriteAlphaFader fader;   // 拖 FadeOverlay 上的组件
 
     [Header("渐变时间 / Fade durations")]
-    public float fadeToWhiteTime = 0.4f;      // 0 -> 100
-    public float fadeFromWhiteTime = 0.4f;    // 100 -> 0
+    public float fadeToWhiteTime = 0.4f;      // 到白
+    public float fadeFromWhiteTime = 0.4f;    // 退白
 
     private bool _isRunning = false;
 
@@ -45,38 +49,25 @@ public class BookPageTrigger2D : MonoBehaviour
         if (spreadManager == null)
             spreadManager = FindObjectOfType<Book2DSpreadManager>();
 
-        if (spreadManager == null)
+        if (spreadManager == null || fader == null)
         {
-            Debug.LogWarning("[BookPageTrigger2D] No Book2DSpreadManager found.");
+            Debug.LogWarning("[BookPageTrigger2D] Missing spreadManager or fader.");
             return;
         }
 
-        if (fader == null)
-        {
-            Debug.LogWarning("[BookPageTrigger2D] No SpriteAlphaFader assigned.");
-            return;
-        }
-
-        StartCoroutine(FadeTurnFadeRoutine());
-    }
-
-    private IEnumerator FadeTurnFadeRoutine()
-    {
         _isRunning = true;
 
-        // 1. 从 0 渐变到 100：旧画面被完全盖住
-        yield return fader.FadePercent(0f, 100f, fadeToWhiteTime);
+        // 第一步：从当前 alpha 渐变到 1（完全白）
+        fader.FadeTo(1f, fadeToWhiteTime, () =>
+        {
+            // ★ 到 1 的这一刻才切 spread
+            spreadManager.GoToSpread(targetSpreadIndex, true);
 
-        // 2. 在完全白屏的状态下：翻页 + 切换 spread
-        //    ——这一步在白色后面完成，玩家看不到“突然跳图”
-        spreadManager.GoToSpread(targetSpreadIndex, true);
-
-        // ★ 不再等 turnTime，直接开始退白，让体验更确定
-        // 如果你之后要做很长的 3D 翻页动画，再单独优化。
-
-        // 3. 从 100 渐变到 0：新画面从白色里慢慢显现
-        yield return fader.FadePercent(100f, 0f, fadeFromWhiteTime);
-
-        _isRunning = false;
+            // 第二步：从 1 渐变回 0，露出新画面
+            fader.FadeTo(0f, fadeFromWhiteTime, () =>
+            {
+                _isRunning = false;
+            });
+        });
     }
 }

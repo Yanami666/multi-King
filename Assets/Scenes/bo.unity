@@ -6424,7 +6424,6 @@ MonoBehaviour:
   turnTimeType: 0
   turnTime: 1
   openTime: 1
-  extraMaxWait: 0.02
 --- !u!1 &1348071987
 GameObject:
   m_ObjectHideFlags: 0
