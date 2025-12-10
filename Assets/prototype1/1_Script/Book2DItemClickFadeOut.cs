@@ -1,39 +1,39 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// 让 Sprite 渐隐（依赖 SpriteAlphaFader）。
-/// 可以：
-/// - 自己 OnMouseDown 触发
-/// - 被 Book3DTriggerCall2D 调用 StartFadeFromExternal()
-/// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
 public class Book2DItemClickFadeOut : MonoBehaviour
 {
-    [Header("渐隐设置 / Fade settings")]
-    public float fadeDuration = 1f;
-    public bool disableObjectAfterFade = true;
-    public bool disableColliderOnStart = true;
-
-    [Header("是否允许自己用鼠标点 / Allow self OnMouseClick")]
+    [Header("是否允许直接点 2D 自己 / Allow self OnMouseClick")]
     public bool allowSelfClick = false;
+
+    [Header("只淡出一次 / Fade only once")]
+    public bool fadeOnlyOnce = true;
+
+    [Header("淡出时长（秒） / Fade duration (seconds)")]
+    public float fadeDuration = 0.5f;
+
+    [Header("点击后立刻关掉 collider / Disable collider on click")]
+    public bool disableColliderOnClick = true;
+
+    [Header("淡出结束后是否隐藏物体 / Disable object after fade")]
+    public bool disableObjectAfterFade = true;
 
     [Header("调试输出 / Debug log")]
     public bool enableDebugLog = false;
 
-    private SpriteAlphaFader _fader;
+    private SpriteRenderer _sr;
     private Collider2D _col;
+    private Color _startColor;
+    private bool _isFading = false;
     private bool _hasFaded = false;
 
     private void Awake()
     {
-        _fader = GetComponent<SpriteAlphaFader>();
-        if (_fader == null)
-        {
-            _fader = gameObject.AddComponent<SpriteAlphaFader>();
-        }
-
+        _sr = GetComponent<SpriteRenderer>();
         _col = GetComponent<Collider2D>();
+        _startColor = _sr.color;
     }
 
     private void OnMouseDown()
@@ -48,38 +48,49 @@ public class Book2DItemClickFadeOut : MonoBehaviour
     }
 
     /// <summary>
-    /// 提供给外部（3D trigger 或别的脚本）调用
+    /// 提供给外部调用：比如 Book3DTriggerCall2D
+    /// Public entry for 3D trigger, etc.
     /// </summary>
     public void StartFadeFromExternal()
     {
-        if (_hasFaded)
+        if (fadeOnlyOnce && _hasFaded)
         {
             if (enableDebugLog)
                 Debug.Log("[Book2DItemClickFadeOut] Already faded on " + name);
             return;
         }
 
-        _hasFaded = true;
-
-        if (disableColliderOnStart && _col != null)
-            _col.enabled = false;
+        if (_isFading)
+            return;
 
         StartCoroutine(FadeRoutine());
     }
 
     private IEnumerator FadeRoutine()
     {
-        if (enableDebugLog)
-            Debug.Log("[Book2DItemClickFadeOut] Start fade on " + name);
+        _isFading = true;
+        _hasFaded = true;
 
-        // 默认从 100% -> 0%
-        yield return _fader.FadePercent(100f, 0f, fadeDuration);
+        if (disableColliderOnClick && _col != null)
+            _col.enabled = false;
+
+        float t = 0f;
+        Color c = _startColor;
+
+        while (t < fadeDuration)
+        {
+            float a = Mathf.Lerp(_startColor.a, 0f, t / fadeDuration);
+            _sr.color = new Color(c.r, c.g, c.b, a);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        _sr.color = new Color(c.r, c.g, c.b, 0f);
 
         if (disableObjectAfterFade)
-        {
-            if (enableDebugLog)
-                Debug.Log("[Book2DItemClickFadeOut] Disable object " + name);
             gameObject.SetActive(false);
-        }
+
+        _isFading = false;
     }
 }

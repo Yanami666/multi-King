@@ -2835,13 +2835,14 @@ GameObject:
   - component: {fileID: 457111438}
   - component: {fileID: 457111437}
   - component: {fileID: 457111436}
+  - component: {fileID: 457111440}
   m_Layer: 3
   m_Name: mogu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &457111435
 Transform:
   m_ObjectHideFlags: 0
@@ -2870,10 +2871,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6d3c24f893a47fb8bb81d5ec4916e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickFadeOut
-  fadeDuration: 0.5
-  disableObjectAfterFade: 1
-  disableColliderOnStart: 1
   allowSelfClick: 0
+  fadeOnlyOnce: 1
+  fadeDuration: 0.5
+  disableColliderOnClick: 1
+  disableObjectAfterFade: 0
   enableDebugLog: 1
 --- !u!114 &457111437
 MonoBehaviour:
@@ -2887,12 +2889,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d46a20aae27a4e3fa3ff777c60420ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickMoveOnce
-  targetTransform: {fileID: 1301199888}
-  useLocalPosition: 0
-  moveDuration: 0.2
   allowSelfClick: 0
   moveOnlyOnce: 1
-  disableColliderAfterMove: 1
+  useLocalPosition: 0
+  targetPosition: {x: 2.7, y: 4.94, z: 15.845}
+  moveDuration: 0.2
+  disableColliderOnClick: 1
   enableDebugLog: 1
 --- !u!58 &457111438
 CircleCollider2D:
@@ -2988,6 +2990,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &457111440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457111434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe072de5e39d4756a4440ba03efd427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickTrigger
+  allowSelfClick: 0
+  triggerOnlyOnce: 1
+  disableColliderAfterTrigger: 1
+  disableThisObjectAfterTrigger: 1
+  targetObjects:
+  - {fileID: 1923095343}
+  setActiveState: 1
+  enableDebugLog: 1
 --- !u!1 &467916536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,10 +3348,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6d3c24f893a47fb8bb81d5ec4916e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickFadeOut
-  fadeDuration: 1
-  disableObjectAfterFade: 1
-  disableColliderOnStart: 1
   allowSelfClick: 0
+  fadeOnlyOnce: 1
+  fadeDuration: 1
+  disableColliderOnClick: 1
+  disableObjectAfterFade: 1
   enableDebugLog: 1
 --- !u!58 &498582170
 CircleCollider2D:
@@ -4632,8 +4655,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7736631, y: 1, z: 2.3086545}
-  m_Center: {x: -0.1131686, y: 0, z: 0.65432537}
+  m_Size: {x: 1.1418002, y: 1.1158239, z: 2.2683551}
+  m_Center: {x: 0.07089957, y: 0.057911955, z: 0.67447674}
 --- !u!114 &669284072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4647,13 +4670,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
   useMouseClick: 1
-  useTriggerEnter: 0
+  use3DTriggerEnter: 0
   playerTag: Player
   triggerOnlyOnce: 1
-  fadeTarget: {fileID: 1428685195}
-  animTarget: {fileID: 0}
-  moveTarget: {fileID: 0}
-  triggerTarget: {fileID: 0}
+  fadeTargets:
+  - {fileID: 1428685195}
+  moveOnceTargets: []
+  animTargets: []
+  triggerTargets: []
   enableDebugLog: 0
 --- !u!1 &670264086
 GameObject:
@@ -4733,7 +4757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Teleport2DOnTrigger
   playerTag: Player
-  targetPoint: {fileID: 1670370697}
+  targetPoint: {fileID: 2014048799}
 --- !u!61 &672931832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4943,13 +4967,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
   useMouseClick: 1
-  useTriggerEnter: 0
+  use3DTriggerEnter: 0
   playerTag: Player
   triggerOnlyOnce: 1
-  fadeTarget: {fileID: 498582169}
-  animTarget: {fileID: 0}
-  moveTarget: {fileID: 0}
-  triggerTarget: {fileID: 0}
+  fadeTargets:
+  - {fileID: 498582169}
+  moveOnceTargets: []
+  animTargets: []
+  triggerTargets: []
   enableDebugLog: 0
 --- !u!1 &713096720
 GameObject:
@@ -6663,12 +6688,12 @@ MonoBehaviour:
   animator: {fileID: 982206526}
   triggerName: Play
   stateName: 
-  allowSelfClick: 0
+  enableAnimatorOnStart: 0
   playOnlyOnce: 1
   disableColliderOnClick: 1
   disableAfterAnim: 1
   extraDisableDelay: 0
-  enableDebugLog: 0
+  enableDebugLog: 1
 --- !u!1 &987386092
 GameObject:
   m_ObjectHideFlags: 0
@@ -7577,13 +7602,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
   useMouseClick: 1
-  useTriggerEnter: 0
+  use3DTriggerEnter: 0
   playerTag: Player
   triggerOnlyOnce: 1
-  fadeTarget: {fileID: 457111436}
-  animTarget: {fileID: 0}
-  moveTarget: {fileID: 457111437}
-  triggerTarget: {fileID: 0}
+  fadeTargets:
+  - {fileID: 457111436}
+  moveOnceTargets:
+  - {fileID: 457111437}
+  animTargets: []
+  triggerTargets:
+  - {fileID: 457111440}
   enableDebugLog: 0
 --- !u!1 &1227061461
 GameObject:
@@ -7684,7 +7712,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.3462, y: 3.6001, z: 0.43}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 183895178}
@@ -7796,7 +7824,7 @@ GameObject:
   m_Layer: 3
   m_Name: mogu (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8629,13 +8657,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
   useMouseClick: 1
-  useTriggerEnter: 0
+  use3DTriggerEnter: 0
   playerTag: Player
   triggerOnlyOnce: 1
-  fadeTarget: {fileID: 0}
-  animTarget: {fileID: 982206530}
-  moveTarget: {fileID: 0}
-  triggerTarget: {fileID: 982206527}
+  fadeTargets: []
+  moveOnceTargets: []
+  animTargets:
+  - {fileID: 982206530}
+  triggerTargets:
+  - {fileID: 982206527}
   enableDebugLog: 1
 --- !u!1 &1418653728
 GameObject:
@@ -8774,10 +8804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6d3c24f893a47fb8bb81d5ec4916e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickFadeOut
-  fadeDuration: 1
-  disableObjectAfterFade: 1
-  disableColliderOnStart: 1
   allowSelfClick: 0
+  fadeOnlyOnce: 1
+  fadeDuration: 1
+  disableColliderOnClick: 1
+  disableObjectAfterFade: 1
   enableDebugLog: 1
 --- !u!61 &1428685196
 BoxCollider2D:

@@ -6,11 +6,11 @@ public class Book2DClickPlayAnimSimple : MonoBehaviour
 {
     [Header("Animator 设置 / Animator settings")]
     public Animator animator;                 // 不填就自动在本物体上找
-    public string triggerName = "Play";       // Animator 里的 Trigger 名字
-    public string stateName = "";             // 如果不用 Trigger，可以填 State 名
+    public string triggerName = "Play";       // Animator 里的 Trigger 名
+    public string stateName = "";             // 如果不用 Trigger，可以填一个 State 名
 
-    [Header("是否允许自己用鼠标点 / Allow self OnMouseClick")]
-    public bool allowSelfClick = false;
+    [Header("一开始是否就让 Animator 运行 / Enable animator at start")]
+    public bool enableAnimatorOnStart = false;   // 对“云”就把这个勾掉
 
     [Header("只播放一次 / Play only once")]
     public bool playOnlyOnce = true;
@@ -35,6 +35,14 @@ public class Book2DClickPlayAnimSimple : MonoBehaviour
 
         _col = GetComponent<Collider2D>();
 
+        // 🌟 关键：如果你不想开局就播放动画，就把 Animator 先关掉
+        if (!enableAnimatorOnStart && animator != null)
+        {
+            animator.enabled = false;
+            if (enableDebugLog)
+                Debug.Log("[Book2DClickPlayAnimSimple] Disable animator on start: " + name);
+        }
+
         if (enableDebugLog)
         {
             Debug.Log("[Book2DClickPlayAnimSimple] Awake on " + name +
@@ -44,16 +52,13 @@ public class Book2DClickPlayAnimSimple : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!allowSelfClick)
-            return;
-
         if (enableDebugLog)
             Debug.Log("[Book2DClickPlayAnimSimple] OnMouseDown on " + name);
 
         PlayFromExternal();
     }
 
-    /// <summary>提供给外部（3D trigger）调用</summary>
+    // 🔸 3D Trigger 或其它脚本都用这个接口
     public void PlayFromExternal()
     {
         if (playOnlyOnce && hasPlayed)
@@ -75,14 +80,20 @@ public class Book2DClickPlayAnimSimple : MonoBehaviour
         if (disableColliderOnClick && _col != null)
             _col.enabled = false;
 
+        // 🌟 关键：点到的时候再开启 Animator
+        if (!animator.enabled)
+            animator.enabled = true;
+
         // 优先用 Trigger
         if (!string.IsNullOrEmpty(triggerName))
         {
             if (enableDebugLog)
                 Debug.Log("[Book2DClickPlayAnimSimple] Set Trigger '" + triggerName + "' on " + name);
 
+            animator.ResetTrigger(triggerName); // 防止残留
             animator.SetTrigger(triggerName);
         }
+        // 不用 Trigger 的话，直接 Play 到指定 State
         else if (!string.IsNullOrEmpty(stateName))
         {
             if (enableDebugLog)
@@ -99,12 +110,15 @@ public class Book2DClickPlayAnimSimple : MonoBehaviour
                 animator.runtimeAnimatorController.animationClips != null &&
                 animator.runtimeAnimatorController.animationClips.Length > 0)
             {
+                // 简单拿第一个 clip 的长度
                 clipLen = animator.runtimeAnimatorController.animationClips[0].length;
             }
 
             float totalDelay = clipLen + extraDisableDelay;
             if (totalDelay <= 0f)
+            {
                 totalDelay = extraDisableDelay;
+            }
 
             if (totalDelay > 0f)
                 StartCoroutine(DisableAfterDelay(totalDelay));
