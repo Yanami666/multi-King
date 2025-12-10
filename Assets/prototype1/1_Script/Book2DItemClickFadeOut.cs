@@ -1,166 +1,85 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 让 Sprite 渐隐（依赖 SpriteAlphaFader）。
+/// 可以：
+/// - 自己 OnMouseDown 触发
+/// - 被 Book3DTriggerCall2D 调用 StartFadeFromExternal()
+/// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(Collider2D))]
 public class Book2DItemClickFadeOut : MonoBehaviour
 {
-    [Header("自身渐隐 / Fade out self")]
-    public float fadeDuration = 1f;           // 自己从 1 -> 0 的时间
-    public bool disableColliderOnClick = true;
+    [Header("渐隐设置 / Fade settings")]
+    public float fadeDuration = 1f;
     public bool disableObjectAfterFade = true;
+    public bool disableColliderOnStart = true;
 
-    [Header("淡出后要出现的物体（可选） / Object to show after fade")]
-    public GameObject objectToShow;           // 这里可以拖一个新的物体
-    public bool showWithFadeIn = false;       // 是否给新物体做 0 -> 1 渐显
-    public float fadeInDuration = 0.5f;       // 新物体渐显时间
+    [Header("是否允许自己用鼠标点 / Allow self OnMouseClick")]
+    public bool allowSelfClick = false;
 
     [Header("调试输出 / Debug log")]
     public bool enableDebugLog = false;
 
-    private SpriteRenderer _sprite;
-    private Collider2D _collider;
-    private bool _isFading = false;
+    private SpriteAlphaFader _fader;
+    private Collider2D _col;
+    private bool _hasFaded = false;
 
     private void Awake()
     {
-        _sprite = GetComponent<SpriteRenderer>();
-        _collider = GetComponent<Collider2D>();
-
-        if (_sprite == null)
+        _fader = GetComponent<SpriteAlphaFader>();
+        if (_fader == null)
         {
-            Debug.LogError("[Book2DItemClickFadeOut] SpriteRenderer missing on " + name);
+            _fader = gameObject.AddComponent<SpriteAlphaFader>();
         }
 
-        if (_collider == null)
-        {
-            Debug.LogError("[Book2DItemClickFadeOut] Collider2D missing on " + name);
-        }
+        _col = GetComponent<Collider2D>();
     }
 
-    // 如果你不用统一的 ClickManager，可以直接用这个
     private void OnMouseDown()
     {
+        if (!allowSelfClick)
+            return;
+
         if (enableDebugLog)
-        {
             Debug.Log("[Book2DItemClickFadeOut] OnMouseDown on " + name);
-        }
 
         StartFadeFromExternal();
     }
 
-    // 给 Book2DClickManager 调用的入口
+    /// <summary>
+    /// 提供给外部（3D trigger 或别的脚本）调用
+    /// </summary>
     public void StartFadeFromExternal()
     {
-        if (_isFading)
+        if (_hasFaded)
         {
             if (enableDebugLog)
-            {
-                Debug.Log("[Book2DItemClickFadeOut] Already fading on " + name);
-            }
+                Debug.Log("[Book2DItemClickFadeOut] Already faded on " + name);
             return;
         }
 
-        if (_sprite == null)
-        {
-            if (enableDebugLog)
-            {
-                Debug.LogWarning("[Book2DItemClickFadeOut] Sprite is NULL on " + name);
-            }
-            return;
-        }
+        _hasFaded = true;
 
-        StartCoroutine(FadeOutRoutine());
+        if (disableColliderOnStart && _col != null)
+            _col.enabled = false;
+
+        StartCoroutine(FadeRoutine());
     }
 
-    private IEnumerator FadeOutRoutine()
+    private IEnumerator FadeRoutine()
     {
-        _isFading = true;
-
-        if (disableColliderOnClick && _collider != null)
-        {
-            _collider.enabled = false;
-        }
-
-        Color c = _sprite.color;
-        float startAlpha = c.a;
-        float endAlpha = 0f;
-        float t = 0f;
-        float duration = Mathf.Max(0.0001f, fadeDuration);
-
         if (enableDebugLog)
-        {
-            Debug.Log("[Book2DItemClickFadeOut] Fade-out start on " + name);
-        }
+            Debug.Log("[Book2DItemClickFadeOut] Start fade on " + name);
 
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            float lerp = Mathf.Clamp01(t / duration);
-            float a = Mathf.Lerp(startAlpha, endAlpha, lerp);
-            _sprite.color = new Color(c.r, c.g, c.b, a);
-            yield return null;
-        }
-
-        // 确保完全透明
-        _sprite.color = new Color(c.r, c.g, c.b, endAlpha);
-
-        if (enableDebugLog)
-        {
-            Debug.Log("[Book2DItemClickFadeOut] Fade-out finished on " + name);
-        }
-
-        // 处理要出现的新物体
-        if (objectToShow != null)
-        {
-            objectToShow.SetActive(true);
-
-            if (showWithFadeIn)
-            {
-                SpriteRenderer showSprite = objectToShow.GetComponent<SpriteRenderer>();
-                if (showSprite != null)
-                {
-                    yield return StartCoroutine(FadeInNewObject(showSprite));
-                }
-            }
-        }
+        // 默认从 100% -> 0%
+        yield return _fader.FadePercent(100f, 0f, fadeDuration);
 
         if (disableObjectAfterFade)
         {
+            if (enableDebugLog)
+                Debug.Log("[Book2DItemClickFadeOut] Disable object " + name);
             gameObject.SetActive(false);
         }
-
-        _isFading = false;
-    }
-
-    private IEnumerator FadeInNewObject(SpriteRenderer targetSprite)
-    {
-        if (targetSprite == null)
-            yield break;
-
-        Color c = targetSprite.color;
-        float finalAlpha = c.a <= 0f ? 1f : c.a;   // 如果原来是 0，就淡到 1
-        float startAlpha = 0f;
-        float t = 0f;
-        float duration = Mathf.Max(0.0001f, fadeInDuration);
-
-        // 先把 alpha 置 0
-        targetSprite.color = new Color(c.r, c.g, c.b, startAlpha);
-
-        if (enableDebugLog)
-        {
-            Debug.Log("[Book2DItemClickFadeOut] Fade-in object " + targetSprite.name);
-        }
-
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            float lerp = Mathf.Clamp01(t / duration);
-            float a = Mathf.Lerp(startAlpha, finalAlpha, lerp);
-            targetSprite.color = new Color(c.r, c.g, c.b, a);
-            yield return null;
-        }
-
-        targetSprite.color = new Color(c.r, c.g, c.b, finalAlpha);
     }
 }

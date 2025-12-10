@@ -1,25 +1,33 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 把 2D 物体从当前位置移动到指定目标（一次性）。
+/// 可以自己点，也可以被 3D trigger 调用 MoveOnceFromExternal()。
+/// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class Book2DItemClickMoveOnce : MonoBehaviour
 {
-    [Header("目标位置 / Target position")]
-    public Transform target;              // 把你想去的位置做成一个空物体，拖进来
-    public bool useLocalPosition = false; // 是否用 localPosition
+    [Header("移动目标 / Move target")]
+    public Transform targetTransform;       // 直接拖一个空物体作目标
+    public bool useLocalPosition = false;
 
-    [Header("是否平滑移动 / Smooth move")]
-    public bool smoothMove = true;
-    public float moveTime = 0.5f;
-    public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [Header("时间 / Duration")]
+    public float moveDuration = 0.5f;
 
-    [Header("触发一次后是否关掉 Collider / Disable collider after move")]
+    [Header("是否允许自己用鼠标点 / Allow self OnMouseClick")]
+    public bool allowSelfClick = false;
+
+    [Header("只执行一次 / Only once")]
+    public bool moveOnlyOnce = true;
+    private bool hasMoved = false;
+
+    [Header("移动后是否禁用 collider / Disable collider after move")]
     public bool disableColliderAfterMove = true;
 
     [Header("调试输出 / Debug log")]
     public bool enableDebugLog = false;
 
-    private bool _hasMoved = false;
     private Collider2D _col;
 
     private void Awake()
@@ -27,77 +35,52 @@ public class Book2DItemClickMoveOnce : MonoBehaviour
         _col = GetComponent<Collider2D>();
     }
 
-    // 如果不用 ClickManager，可以直接用这个
     private void OnMouseDown()
     {
-        if (enableDebugLog)
-        {
-            Debug.Log("[Book2DItemClickMoveOnce] OnMouseDown on " + name);
-        }
+        if (!allowSelfClick)
+            return;
 
-        OnExternalClick();
+        if (enableDebugLog)
+            Debug.Log("[Book2DItemClickMoveOnce] OnMouseDown on " + name);
+
+        MoveOnceFromExternal();
     }
 
-    // 给 Book2DClickManager 调用
-    public void OnExternalClick()
+    /// <summary>提供给外部调用</summary>
+    public void MoveOnceFromExternal()
     {
-        if (_hasMoved)
+        if (moveOnlyOnce && hasMoved)
         {
             if (enableDebugLog)
-            {
                 Debug.Log("[Book2DItemClickMoveOnce] Already moved on " + name);
-            }
             return;
         }
 
-        if (target == null)
+        if (targetTransform == null)
         {
             if (enableDebugLog)
-            {
-                Debug.LogWarning("[Book2DItemClickMoveOnce] Target is NULL on " + name);
-            }
+                Debug.LogWarning("[Book2DItemClickMoveOnce] targetTransform is NULL on " + name);
             return;
         }
 
-        _hasMoved = true;
-
-        if (disableColliderAfterMove && _col != null)
-        {
-            _col.enabled = false;
-        }
-
-        if (smoothMove && moveTime > 0f)
-        {
-            StartCoroutine(MoveRoutine());
-        }
-        else
-        {
-            if (useLocalPosition)
-                transform.localPosition = target.localPosition;
-            else
-                transform.position = target.position;
-        }
+        hasMoved = true;
+        StartCoroutine(MoveRoutine());
     }
 
     private IEnumerator MoveRoutine()
     {
+        if (enableDebugLog)
+            Debug.Log("[Book2DItemClickMoveOnce] Start move on " + name);
+
         Vector3 start = useLocalPosition ? transform.localPosition : transform.position;
-        Vector3 end = useLocalPosition ? target.localPosition : target.position;
+        Vector3 end = useLocalPosition ? targetTransform.localPosition : targetTransform.position;
 
         float t = 0f;
-        float duration = Mathf.Max(0.0001f, moveTime);
-
-        if (enableDebugLog)
-        {
-            Debug.Log("[Book2DItemClickMoveOnce] Start moving " + name + " to " + end);
-        }
-
-        while (t < duration)
+        while (t < moveDuration)
         {
             t += Time.deltaTime;
-            float lerp = Mathf.Clamp01(t / duration);
-            float curve = moveCurve != null ? moveCurve.Evaluate(lerp) : lerp;
-            Vector3 pos = Vector3.Lerp(start, end, curve);
+            float k = Mathf.Clamp01(t / moveDuration);
+            Vector3 pos = Vector3.Lerp(start, end, k);
 
             if (useLocalPosition)
                 transform.localPosition = pos;
@@ -107,14 +90,7 @@ public class Book2DItemClickMoveOnce : MonoBehaviour
             yield return null;
         }
 
-        if (useLocalPosition)
-            transform.localPosition = end;
-        else
-            transform.position = end;
-
-        if (enableDebugLog)
-        {
-            Debug.Log("[Book2DItemClickMoveOnce] Move finished on " + name);
-        }
+        if (disableColliderAfterMove && _col != null)
+            _col.enabled = false;
     }
 }

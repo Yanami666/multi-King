@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 16056596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0.037, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2320,7 +2320,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.8134391, y: 3.5700035}
+  m_Offset: {x: -1.8141372, y: 3.5700035}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2330,7 +2330,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.99141455, y: 14.06394}
+  m_Size: {x: 1.3844284, y: 14.06394}
   m_EdgeRadius: 0
 --- !u!4 &366593561
 Transform:
@@ -2431,10 +2431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Book2DDialogueTrigger2D
   playerTag: Player
   playerController: {fileID: 876703366}
-  dialogueObjects:
-  - {fileID: 2107343882}
-  - {fileID: 225149285}
-  - {fileID: 1076677192}
+  dialogueObjects: []
   triggerVisual: {fileID: 372019699}
   advanceKey: 32
 --- !u!61 &372019702
@@ -2857,7 +2854,8 @@ Transform:
   m_LocalPosition: {x: -0.13, y: -1.35, z: 15.845921}
   m_LocalScale: {x: 2, y: 3.4098234, z: 1.6032033}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1226173274}
   m_Father: {fileID: 438207445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &457111436
@@ -2873,11 +2871,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickFadeOut
   fadeDuration: 0.5
-  disableColliderOnClick: 1
   disableObjectAfterFade: 1
-  objectToShow: {fileID: 1923095343}
-  showWithFadeIn: 1
-  fadeInDuration: 0.5
+  disableColliderOnStart: 1
+  allowSelfClick: 0
   enableDebugLog: 1
 --- !u!114 &457111437
 MonoBehaviour:
@@ -2891,36 +2887,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d46a20aae27a4e3fa3ff777c60420ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickMoveOnce
-  target: {fileID: 0}
+  targetTransform: {fileID: 1301199888}
   useLocalPosition: 0
-  smoothMove: 1
-  moveTime: 0.5
-  moveCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  moveDuration: 0.2
+  allowSelfClick: 0
+  moveOnlyOnce: 1
   disableColliderAfterMove: 1
-  enableDebugLog: 0
+  enableDebugLog: 1
 --- !u!58 &457111438
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3279,7 +3252,8 @@ Transform:
   m_LocalPosition: {x: 0.69, y: 0.07, z: 15.845921}
   m_LocalScale: {x: 2, y: 3.4098234, z: 1.6032033}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 707513373}
   m_Father: {fileID: 438207445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &498582168
@@ -3353,11 +3327,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickFadeOut
   fadeDuration: 1
-  disableColliderOnClick: 1
   disableObjectAfterFade: 1
-  objectToShow: {fileID: 0}
-  showWithFadeIn: 0
-  fadeInDuration: 0.5
+  disableColliderOnStart: 1
+  allowSelfClick: 0
   enableDebugLog: 1
 --- !u!58 &498582170
 CircleCollider2D:
@@ -3774,7 +3746,7 @@ Transform:
   m_GameObject: {fileID: 558667209}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.00254, y: 1.0740399, z: 16.84592}
+  m_LocalPosition: {x: -3.9, y: 1.0740399, z: 16.84592}
   m_LocalScale: {x: 1.4826133, y: 2.8, z: 3.1391351}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4608,6 +4580,81 @@ Transform:
   - {fileID: 674748039}
   m_Father: {fileID: 471069471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &669284068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669284069}
+  - component: {fileID: 669284071}
+  - component: {fileID: 669284072}
+  m_Layer: 7
+  m_Name: 3DCloud3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &669284069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669284068}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1083, y: 0.063099265, z: -14.065914}
+  m_LocalScale: {x: 0.04344787, y: 0.047064416, z: 0.04195939}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1428685193}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &669284071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669284068}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7736631, y: 1, z: 2.3086545}
+  m_Center: {x: -0.1131686, y: 0, z: 0.65432537}
+--- !u!114 &669284072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669284068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51440afa6ed34715b442f5f5115b9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
+  useMouseClick: 1
+  useTriggerEnter: 0
+  playerTag: Player
+  triggerOnlyOnce: 1
+  fadeTarget: {fileID: 1428685195}
+  animTarget: {fileID: 0}
+  moveTarget: {fileID: 0}
+  triggerTarget: {fileID: 0}
+  enableDebugLog: 0
 --- !u!1 &670264086
 GameObject:
   m_ObjectHideFlags: 0
@@ -4829,6 +4876,81 @@ Transform:
   - {fileID: 2060114674}
   m_Father: {fileID: 225536373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &707513372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707513373}
+  - component: {fileID: 707513375}
+  - component: {fileID: 707513376}
+  m_Layer: 0
+  m_Name: 3DCloud2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &707513373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707513372}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1635, y: -0.17734054, z: -14.012522}
+  m_LocalScale: {x: 0.04344787, y: 0.0516455, z: 0.04195939}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 498582167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &707513375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707513372}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &707513376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707513372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51440afa6ed34715b442f5f5115b9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
+  useMouseClick: 1
+  useTriggerEnter: 0
+  playerTag: Player
+  triggerOnlyOnce: 1
+  fadeTarget: {fileID: 498582169}
+  animTarget: {fileID: 0}
+  moveTarget: {fileID: 0}
+  triggerTarget: {fileID: 0}
+  enableDebugLog: 0
 --- !u!1 &713096720
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,7 +6498,8 @@ Transform:
   m_LocalPosition: {x: -0.01, y: -1.2, z: 15.84592}
   m_LocalScale: {x: 2, y: 3.4098234, z: 1.6032033}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1397043492}
   m_Father: {fileID: 438207445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &982206526
@@ -6413,14 +6536,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe072de5e39d4756a4440ba03efd427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickTrigger
-  objectsToActivate:
-  - {fileID: 457111434}
-  objectsToDeactivate: []
-  fadeInActivatedObjects: 1
-  fadeInDuration: 0.5
+  allowSelfClick: 0
   triggerOnlyOnce: 1
   disableColliderAfterTrigger: 1
-  disableSelfAfterTrigger: 0
+  disableThisObjectAfterTrigger: 0
+  targetObjects:
+  - {fileID: 457111434}
+  setActiveState: 1
   enableDebugLog: 1
 --- !u!61 &982206528
 BoxCollider2D:
@@ -6514,7 +6636,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1461472631
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1790430a1e45d4dcfbdb0aebbe2c9dc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6539,9 +6661,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DClickPlayAnimSimple
   animator: {fileID: 982206526}
-  lockAnimatorAtStart: 1
   triggerName: Play
   stateName: 
+  allowSelfClick: 0
   playOnlyOnce: 1
   disableColliderOnClick: 1
   disableAfterAnim: 1
@@ -7388,7 +7510,7 @@ Transform:
   - {fileID: 856205360}
   m_Father: {fileID: 1628666851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1199699800
+--- !u!1 &1226173273
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7396,47 +7518,73 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1199699802}
-  - component: {fileID: 1199699801}
+  - component: {fileID: 1226173274}
+  - component: {fileID: 1226173276}
+  - component: {fileID: 1226173277}
   m_Layer: 0
-  m_Name: ClickManager
+  m_Name: 3Dmogu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1199699801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199699800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09253e977b61d4c27bc8bfb0304854cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Book2DClickManager
-  book2DCamera: {fileID: 183895177}
-  clickableLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  enableDebugLog: 1
---- !u!4 &1199699802
+--- !u!4 &1226173274
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199699800}
+  m_GameObject: {fileID: 1226173273}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0449, y: -0.62102, z: 0.87407}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1485, y: 0.2518752, z: -14.126045}
+  m_LocalScale: {x: 0.02, y: 0.011730812, z: 0.024950048}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 457111435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1226173276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226173273}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1226173277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226173273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51440afa6ed34715b442f5f5115b9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
+  useMouseClick: 1
+  useTriggerEnter: 0
+  playerTag: Player
+  triggerOnlyOnce: 1
+  fadeTarget: {fileID: 457111436}
+  animTarget: {fileID: 0}
+  moveTarget: {fileID: 457111437}
+  triggerTarget: {fileID: 0}
+  enableDebugLog: 0
 --- !u!1 &1227061461
 GameObject:
   m_ObjectHideFlags: 0
@@ -8414,6 +8562,81 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1397043491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1397043492}
+  - component: {fileID: 1397043494}
+  - component: {fileID: 1397043495}
+  m_Layer: 0
+  m_Name: 3DCloud1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1397043492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397043491}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.107, y: 0.19511275, z: -14.116688}
+  m_LocalScale: {x: 0.04344787, y: 0.0516455, z: 0.04195939}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 982206525}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1397043494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397043491}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.55769986, y: 1, z: 0.82869047}
+  m_Center: {x: -0.22115046, y: 0, z: -0.08565477}
+--- !u!114 &1397043495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397043491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51440afa6ed34715b442f5f5115b9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book3DTriggerCall2D
+  useMouseClick: 1
+  useTriggerEnter: 0
+  playerTag: Player
+  triggerOnlyOnce: 1
+  fadeTarget: {fileID: 0}
+  animTarget: {fileID: 982206530}
+  moveTarget: {fileID: 0}
+  triggerTarget: {fileID: 982206527}
+  enableDebugLog: 1
 --- !u!1 &1418653728
 GameObject:
   m_ObjectHideFlags: 0
@@ -8477,7 +8700,8 @@ Transform:
   m_LocalPosition: {x: -0.02, y: -0.7708, z: 15.845921}
   m_LocalScale: {x: 2, y: 3.741724, z: 1.6032033}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 669284069}
   m_Father: {fileID: 438207445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1428685194
@@ -8551,11 +8775,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DItemClickFadeOut
   fadeDuration: 1
-  disableColliderOnClick: 1
   disableObjectAfterFade: 1
-  objectToShow: {fileID: 0}
-  showWithFadeIn: 0
-  fadeInDuration: 0.5
+  disableColliderOnStart: 1
+  allowSelfClick: 0
   enableDebugLog: 1
 --- !u!61 &1428685196
 BoxCollider2D:
@@ -8672,6 +8894,57 @@ Transform:
   - {fileID: 1770167311}
   m_Father: {fileID: 1327878676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1447618225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1447618226}
+  - component: {fileID: 1447618227}
+  m_Layer: 0
+  m_Name: m
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1447618226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447618225}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.31123, y: 0.62, z: 0.44124985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1447618227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447618225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09253e977b61d4c27bc8bfb0304854cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DClickManager
+  main3DCamera: {fileID: 534669904}
+  book2DCamera: {fileID: 183895177}
+  book3DLayerMask:
+    m_Bits: 1
+  clickableLayerMask:
+    m_Bits: 8
+  enableDebugLog: 1
 --- !u!1 &1448999092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9956,7 +10229,7 @@ Transform:
   m_GameObject: {fileID: 1670370696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.58, y: 1.54, z: 16.583}
+  m_LocalPosition: {x: 3.2, y: 1.59, z: 16.583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10557,6 +10830,54 @@ Transform:
   m_Children:
   - {fileID: 636883964}
   m_Father: {fileID: 1785127114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1758783230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758783232}
+  - component: {fileID: 1758783231}
+  m_Layer: 0
+  m_Name: cs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1758783231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758783230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afeebc37fdcb41b2b7401a9b6a51007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDebugClickProbe
+  book2DCamera: {fileID: 183895177}
+  probeLayerMask:
+    m_Bits: 8
+  enableDebugLog: 1
+--- !u!4 &1758783232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758783230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.58142, y: 0.36522, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1770167310
 GameObject:
@@ -12975,7 +13296,8 @@ SceneRoots:
   - {fileID: 1618040841}
   - {fileID: 183895178}
   - {fileID: 1347377601}
+  - {fileID: 1447618226}
   - {fileID: 1448999093}
   - {fileID: 438207445}
   - {fileID: 1627057938}
-  - {fileID: 1199699802}
+  - {fileID: 1758783232}

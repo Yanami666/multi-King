@@ -90,4 +90,9 @@ public class SpriteAlphaFader : MonoBehaviour
         _isFading = false;
         _onComplete = null;
     }
+
+    internal object FadePercent(float v1, float v2, float fadeDuration)
+    {
+        throw new NotImplementedException();
+    }
 }
