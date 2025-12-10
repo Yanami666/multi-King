@@ -1,57 +1,120 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class Book2DItemClickMoveOnce : MonoBehaviour
 {
-    // 是否使用目标 Transform 来决定新位置（更直观，用空物体当锚点）
-    public bool useTargetTransform = true;
+    [Header("目标位置 / Target position")]
+    public Transform target;              // 把你想去的位置做成一个空物体，拖进来
+    public bool useLocalPosition = false; // 是否用 localPosition
 
-    // 目标位置（如果 useTargetTransform = false，就用这个 Vector3）
-    public Vector3 targetPosition;
+    [Header("是否平滑移动 / Smooth move")]
+    public bool smoothMove = true;
+    public float moveTime = 0.5f;
+    public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-    // 目标 Transform（比如放一个空物体在你想要的位置）
-    public Transform targetTransform;
+    [Header("触发一次后是否关掉 Collider / Disable collider after move")]
+    public bool disableColliderAfterMove = true;
 
-    // 是否在本地坐标系下移动（一般建议 false，用世界坐标）
-    public bool useLocalPosition = false;
+    [Header("调试输出 / Debug log")]
+    public bool enableDebugLog = false;
 
-    private bool _activated = false;
+    private bool _hasMoved = false;
+    private Collider2D _col;
 
     private void Awake()
     {
-        // 确保有 Collider，可以被 OnMouseDown 检测到
-        var col = GetComponent<Collider2D>();
-        col.isTrigger = false; // 点按不一定非要 trigger
+        _col = GetComponent<Collider2D>();
     }
 
+    // 如果不用 ClickManager，可以直接用这个
     private void OnMouseDown()
     {
-        if (_activated)
-            return;
-
-        _activated = true;
-
-        Vector3 newPos;
-
-        if (useTargetTransform && targetTransform != null)
+        if (enableDebugLog)
         {
-            newPos = targetTransform.position;
+            Debug.Log("[Book2DItemClickMoveOnce] OnMouseDown on " + name);
+        }
+
+        OnExternalClick();
+    }
+
+    // 给 Book2DClickManager 调用
+    public void OnExternalClick()
+    {
+        if (_hasMoved)
+        {
+            if (enableDebugLog)
+            {
+                Debug.Log("[Book2DItemClickMoveOnce] Already moved on " + name);
+            }
+            return;
+        }
+
+        if (target == null)
+        {
+            if (enableDebugLog)
+            {
+                Debug.LogWarning("[Book2DItemClickMoveOnce] Target is NULL on " + name);
+            }
+            return;
+        }
+
+        _hasMoved = true;
+
+        if (disableColliderAfterMove && _col != null)
+        {
+            _col.enabled = false;
+        }
+
+        if (smoothMove && moveTime > 0f)
+        {
+            StartCoroutine(MoveRoutine());
         }
         else
         {
-            newPos = targetPosition;
+            if (useLocalPosition)
+                transform.localPosition = target.localPosition;
+            else
+                transform.position = target.position;
+        }
+    }
+
+    private IEnumerator MoveRoutine()
+    {
+        Vector3 start = useLocalPosition ? transform.localPosition : transform.position;
+        Vector3 end = useLocalPosition ? target.localPosition : target.position;
+
+        float t = 0f;
+        float duration = Mathf.Max(0.0001f, moveTime);
+
+        if (enableDebugLog)
+        {
+            Debug.Log("[Book2DItemClickMoveOnce] Start moving " + name + " to " + end);
+        }
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / duration);
+            float curve = moveCurve != null ? moveCurve.Evaluate(lerp) : lerp;
+            Vector3 pos = Vector3.Lerp(start, end, curve);
+
+            if (useLocalPosition)
+                transform.localPosition = pos;
+            else
+                transform.position = pos;
+
+            yield return null;
         }
 
         if (useLocalPosition)
-        {
-            transform.localPosition = newPos;
-        }
+            transform.localPosition = end;
         else
-        {
-            transform.position = newPos;
-        }
+            transform.position = end;
 
-        // 单次触发：移动完后禁用脚本，防止再次点击
-        enabled = false;
+        if (enableDebugLog)
+        {
+            Debug.Log("[Book2DItemClickMoveOnce] Move finished on " + name);
+        }
     }
 }
