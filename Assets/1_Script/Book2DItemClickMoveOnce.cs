@@ -10,17 +10,23 @@ public class Book2DItemClickMoveOnce : MonoBehaviour
     [Header("只移动一次 / Move only once")]
     public bool moveOnlyOnce = true;
 
-    [Header("移动目标是本地坐标？ / Use local position")]
+    [Header("移动时使用本地坐标 / Use local position")]
     public bool useLocalPosition = true;
 
-    [Header("目标位置 / Target position")]
+    [Header("目标位置（如果 targetTransform 不为空，将用它） / Target position")]
     public Vector3 targetPosition;
+
+    [Header("可以直接拖一个空物体当目标点 / Optional target transform")]
+    public Transform targetTransform;
 
     [Header("移动时长（0 = 瞬移） / Move duration (0 = instant)")]
     public float moveDuration = 0.3f;
 
-    [Header("点击后关掉 collider / Disable collider on click")]
+    [Header("点击后是否关掉 collider / Disable collider on click")]
     public bool disableColliderOnClick = true;
+
+    [Header("可选 Gate：需要先解锁 / Optional gate to unlock first")]
+    public Book2DTriggerGate requiredGate;
 
     [Header("调试输出 / Debug log")]
     public bool enableDebugLog = false;
@@ -39,22 +45,22 @@ public class Book2DItemClickMoveOnce : MonoBehaviour
         if (!allowSelfClick)
             return;
 
-        if (enableDebugLog)
-            Debug.Log("[Book2DItemClickMoveOnce] OnMouseDown on " + name);
-
         MoveFromExternal();
     }
 
-    /// <summary>
-    /// 提供给外部调用：比如 Book3DTriggerCall2D
-    /// Public entry for 3D trigger, etc.
-    /// </summary>
     public void MoveFromExternal()
     {
+        if (requiredGate != null && !requiredGate.IsUnlocked)
+        {
+            if (enableDebugLog)
+                Debug.Log("[Book2DItemClickMoveOnce] Gate locked, cannot move: " + name);
+            return;
+        }
+
         if (moveOnlyOnce && _hasMoved)
         {
             if (enableDebugLog)
-                Debug.Log("[Book2DItemClickMoveOnce] Already moved on " + name);
+                Debug.Log("[Book2DItemClickMoveOnce] Already moved: " + name);
             return;
         }
 
@@ -65,6 +71,12 @@ public class Book2DItemClickMoveOnce : MonoBehaviour
 
         if (disableColliderOnClick && _col != null)
             _col.enabled = false;
+
+        // 如果设置了空物体，就用它的位置
+        if (targetTransform != null)
+        {
+            targetPosition = useLocalPosition ? targetTransform.localPosition : targetTransform.position;
+        }
 
         if (moveDuration <= 0f)
         {
@@ -98,7 +110,7 @@ public class Book2DItemClickMoveOnce : MonoBehaviour
 
         while (t < moveDuration)
         {
-            float k = t / moveDuration;
+            float k = moveDuration > 0f ? t / moveDuration : 1f;
             Vector3 p = Vector3.Lerp(startPos, endPos, k);
 
             if (useLocalPosition)
