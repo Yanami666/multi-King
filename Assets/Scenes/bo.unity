@@ -4838,6 +4838,7 @@ GameObject:
   - component: {fileID: 451996887}
   - component: {fileID: 451996886}
   - component: {fileID: 451996885}
+  - component: {fileID: 451996890}
   m_Layer: 3
   m_Name: xiaomogu
   m_TagString: Untagged
@@ -5004,6 +5005,28 @@ Transform:
   - {fileID: 636753896}
   m_Father: {fileID: 1627057938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &451996890
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451996884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e925ff9c7b0614396bc053a7285878ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &452379814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5128,6 +5151,7 @@ GameObject:
   - component: {fileID: 457111436}
   - component: {fileID: 457111442}
   - component: {fileID: 457111441}
+  - component: {fileID: 457111443}
   m_Layer: 3
   m_Name: mogu
   m_TagString: Untagged
@@ -5397,6 +5421,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &457111443
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457111434}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a2171797e2904b15b54122beb8fe32d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &467916536
 GameObject:
   m_ObjectHideFlags: 0
@@ -9725,7 +9771,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -630126829
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: ff28a9d81813149a78bc2e2e9ec3dfbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -16226,6 +16272,7 @@ GameObject:
   - component: {fileID: 1256284230}
   - component: {fileID: 1256284229}
   - component: {fileID: 1256284228}
+  - component: {fileID: 1256284231}
   m_Layer: 0
   m_Name: BGMManager
   m_TagString: Untagged
@@ -16258,8 +16305,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: 16b1d70e3bd684b2f8d3ae86fb7180c0, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -16359,6 +16406,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256284231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256284227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f90056c5f6cb457c9cff060fb64fa3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneBGMManager
 --- !u!1 &1256392513
 GameObject:
   m_ObjectHideFlags: 0
@@ -16946,7 +17005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1307529497
 Transform:
   m_ObjectHideFlags: 0
@@ -21143,7 +21202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1627057938
 Transform:
   m_ObjectHideFlags: 0
