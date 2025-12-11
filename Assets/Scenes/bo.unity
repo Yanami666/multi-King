@@ -3161,7 +3161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &438207445
 Transform:
   m_ObjectHideFlags: 0
@@ -4372,7 +4372,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8677043, y: 1.0505836}
+    oldSize: {x: 0.4036965, y: 0.6575875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4424,6 +4424,14 @@ MonoBehaviour:
   minXY: {x: -4, y: -3}
   maxXY: {x: 4, y: 3}
   canMove: 1
+  spriteRenderer: {fileID: 558667214}
+  idleSprite: {fileID: 21300000, guid: d56452f77d6b841e4b670c25116b847b, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: e9b35282438dd42239e587fb7bc82b5f, type: 3}
+  - {fileID: 21300000, guid: 3cca46dce22834a85b184bb877946b84, type: 3}
+  - {fileID: 21300000, guid: 8e197204466ee4b55b15f633484460db, type: 3}
+  - {fileID: 21300000, guid: fa312707386f941bda5ffb33952938d6, type: 3}
+  animationFPS: 8
 --- !u!212 &558667214
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4471,7 +4479,7 @@ SpriteRenderer:
   m_SortingLayerID: 173500203
   m_SortingLayer: 3
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 40dcdc6e9fd7f4092a35c7f0baee5cf9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d56452f77d6b841e4b670c25116b847b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5327,6 +5335,7 @@ MonoBehaviour:
   fade2D: {fileID: 1428685195}
   move2D: {fileID: 0}
   trigger2D: {fileID: 0}
+  sfx2D: {fileID: 0}
   enableDebugLog: 0
 --- !u!1 &670264086
 GameObject:
@@ -5625,6 +5634,7 @@ MonoBehaviour:
   fade2D: {fileID: 498582169}
   move2D: {fileID: 0}
   trigger2D: {fileID: 498582171}
+  sfx2D: {fileID: 0}
   enableDebugLog: 0
 --- !u!1 &713096720
 GameObject:
@@ -6753,7 +6763,7 @@ SpriteRenderer:
   m_SortingLayerID: 173500203
   m_SortingLayer: 3
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 40dcdc6e9fd7f4092a35c7f0baee5cf9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d56452f77d6b841e4b670c25116b847b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6796,6 +6806,14 @@ MonoBehaviour:
   minXY: {x: -4, y: -3}
   maxXY: {x: 4, y: 3}
   canMove: 1
+  spriteRenderer: {fileID: 876703364}
+  idleSprite: {fileID: 21300000, guid: d56452f77d6b841e4b670c25116b847b, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: e9b35282438dd42239e587fb7bc82b5f, type: 3}
+  - {fileID: 21300000, guid: 3cca46dce22834a85b184bb877946b84, type: 3}
+  - {fileID: 21300000, guid: 8e197204466ee4b55b15f633484460db, type: 3}
+  - {fileID: 21300000, guid: fa312707386f941bda5ffb33952938d6, type: 3}
+  animationFPS: 8
 --- !u!61 &876703367
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6834,7 +6852,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8677043, y: 1.0505836}
+    oldSize: {x: 0.4036965, y: 0.6575875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9467,6 +9485,7 @@ MonoBehaviour:
   fade2D: {fileID: 457111436}
   move2D: {fileID: 0}
   trigger2D: {fileID: 457111440}
+  sfx2D: {fileID: 0}
   enableDebugLog: 0
 --- !u!1 &1227061461
 GameObject:
@@ -10669,6 +10688,7 @@ MonoBehaviour:
   fade2D: {fileID: 0}
   move2D: {fileID: 0}
   trigger2D: {fileID: 982206527}
+  sfx2D: {fileID: 0}
   enableDebugLog: 1
 --- !u!1 &1418653728
 GameObject:
@@ -10988,7 +11008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1448999093
 Transform:
   m_ObjectHideFlags: 0
