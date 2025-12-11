@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &16056597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163,10 +163,10 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d5b1024322e141fc83856de7055d351, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   - {fileID: 2100000, guid: 2a62fee200e8ff446af82c711f28137e, type: 2}
   - {fileID: 2100000, guid: 2fda23243d8ea48539fe1452b820dbd5, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 26266883}
   - component: {fileID: 26266882}
   - component: {fileID: 26266881}
+  - component: {fileID: 26266885}
   m_Layer: 3
   m_Name: Dialogue_p2.5
   m_TagString: Untagged
@@ -425,6 +426,103 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &26266885
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26266879}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &30035792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleport2DOnTrigger
   playerTag: Player
   targetPoint: {fileID: 865949577}
-  requiredGate: {fileID: 0}
+  playOnPlayer: 1
+  audioSource: {fileID: 0}
+  teleportClip: {fileID: 0}
 --- !u!61 &103685676
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1189,7 +1289,6 @@ GameObject:
   - component: {fileID: 111015611}
   - component: {fileID: 111015610}
   - component: {fileID: 111015615}
-  - component: {fileID: 111015614}
   m_Layer: 3
   m_Name: B2D_Player (2)
   m_TagString: Player
@@ -1310,6 +1409,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e197204466ee4b55b15f633484460db, type: 3}
   - {fileID: 21300000, guid: fa312707386f941bda5ffb33952938d6, type: 3}
   animationFPS: 8
+  footstepSource: {fileID: 111015615}
+  inputThreshold: 0.1
 --- !u!212 &111015613
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1368,21 +1469,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &111015614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111015608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e2b8ddf1b6849cca0b58574e561445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFootstep2D
-  rb: {fileID: 111015611}
-  footstepSource: {fileID: 111015615}
-  minSpeed: 0.1
 --- !u!82 &111015615
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1623,6 +1709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129345511}
   - component: {fileID: 129345512}
+  - component: {fileID: 129345513}
   m_Layer: 3
   m_Name: 4-9
   m_TagString: Untagged
@@ -1703,6 +1790,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &129345513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129345510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &134216416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 155937681}
   - component: {fileID: 155937682}
+  - component: {fileID: 155937683}
   m_Layer: 3
   m_Name: 4-12
   m_TagString: Untagged
@@ -2083,6 +2189,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &155937683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155937680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &175957669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2127,7 +2251,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d5b1024322e141fc83856de7055d351, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2402,6 +2526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210577723}
   - component: {fileID: 210577724}
+  - component: {fileID: 210577725}
   m_Layer: 3
   m_Name: 4-7
   m_TagString: Untagged
@@ -2482,6 +2607,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &210577725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210577722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &225149285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,6 +2635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 225149286}
   - component: {fileID: 225149287}
+  - component: {fileID: 225149288}
   m_Layer: 3
   m_Name: PT0-2
   m_TagString: Untagged
@@ -2508,11 +2652,11 @@ Transform:
   m_GameObject: {fileID: 225149285}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.83, y: 2.05, z: 30.652573}
-  m_LocalScale: {x: 2, y: 4, z: 1}
+  m_LocalPosition: {x: -0.14285725, y: -0.04081629, z: 30.874638}
+  m_LocalScale: {x: 4.0816326, y: 4.0816326, z: 2.0408163}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1448999093}
+  m_Father: {fileID: 912809548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &225149287
 SpriteRenderer:
@@ -2572,6 +2716,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &225149288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225149285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 912809553}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &225536372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3453,6 +3615,7 @@ GameObject:
   - component: {fileID: 372019701}
   - component: {fileID: 372019704}
   - component: {fileID: 372019705}
+  - component: {fileID: 372019706}
   m_Layer: 3
   m_Name: Dialogue_p1
   m_TagString: Untagged
@@ -3656,6 +3819,103 @@ MonoBehaviour:
   gateToUnlock: {fileID: 139818503}
   requiredGate: {fileID: 0}
   enableDebugLog: 1
+--- !u!82 &372019706
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372019699}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &388544255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3885,6 +4145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 411076610}
   - component: {fileID: 411076611}
+  - component: {fileID: 411076612}
   m_Layer: 3
   m_Name: 4-16
   m_TagString: Untagged
@@ -3965,6 +4226,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &411076612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411076609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &416710952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,6 +4448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447187422}
   - component: {fileID: 447187423}
+  - component: {fileID: 447187424}
   m_Layer: 3
   m_Name: 1-9
   m_TagString: Untagged
@@ -4249,6 +4529,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &447187424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447187421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: dd4075875e50447e48ce73d7fa8d35a9, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 1
 --- !u!1 &451996884
 GameObject:
   m_ObjectHideFlags: 0
@@ -4438,6 +4736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452379815}
   - component: {fileID: 452379816}
+  - component: {fileID: 452379817}
   m_Layer: 3
   m_Name: 4-17
   m_TagString: Untagged
@@ -4518,6 +4817,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &452379817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452379814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &457111434
 GameObject:
   m_ObjectHideFlags: 0
@@ -4531,6 +4848,8 @@ GameObject:
   - component: {fileID: 457111440}
   - component: {fileID: 457111438}
   - component: {fileID: 457111436}
+  - component: {fileID: 457111442}
+  - component: {fileID: 457111441}
   m_Layer: 3
   m_Name: mogu
   m_TagString: Untagged
@@ -4688,6 +5007,118 @@ MonoBehaviour:
   - {fileID: 1220709558}
   objectsToDisable: []
   enableDebugLog: 1
+--- !u!114 &457111441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457111434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09c92509b30d4523a368376cd423e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DClickPlaySFX
+  allowSelfClick: 0
+  playOnlyOnce: 1
+  enableDebugLog: 1
+--- !u!82 &457111442
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457111434}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 3b6f00baa4bf74f6e8af89d4fead9777, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &467916536
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,6 +5233,7 @@ GameObject:
   - component: {fileID: 477288736}
   - component: {fileID: 477288735}
   - component: {fileID: 477288734}
+  - component: {fileID: 477288739}
   m_Layer: 3
   m_Name: Dialogue_p5
   m_TagString: Untagged
@@ -4989,6 +5421,103 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &477288739
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477288732}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &498088928
 GameObject:
   m_ObjectHideFlags: 0
@@ -5135,6 +5664,8 @@ GameObject:
   - component: {fileID: 498582170}
   - component: {fileID: 498582169}
   - component: {fileID: 498582171}
+  - component: {fileID: 498582173}
+  - component: {fileID: 498582172}
   m_Layer: 3
   m_Name: Cloud2
   m_TagString: Untagged
@@ -5291,6 +5822,118 @@ MonoBehaviour:
   - {fileID: 1136398483}
   objectsToDisable: []
   enableDebugLog: 0
+--- !u!114 &498582172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498582166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09c92509b30d4523a368376cd423e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DClickPlaySFX
+  allowSelfClick: 0
+  playOnlyOnce: 1
+  enableDebugLog: 0
+--- !u!82 &498582173
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498582166}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: cf344b33030ae4db9824d3010f8f4a90, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &514444767
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,6 +6022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 526746097}
   - component: {fileID: 526746098}
+  - component: {fileID: 526746099}
   m_Layer: 3
   m_Name: 1-2
   m_TagString: Untagged
@@ -5459,6 +6103,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &526746099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526746096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &526824009
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,6 +6371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 535507842}
   - component: {fileID: 535507843}
+  - component: {fileID: 535507844}
   m_Layer: 3
   m_Name: 4-10
   m_TagString: Untagged
@@ -5789,6 +6452,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &535507844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535507841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &544162844
 GameObject:
   m_ObjectHideFlags: 0
@@ -5835,7 +6516,6 @@ GameObject:
   - component: {fileID: 558667212}
   - component: {fileID: 558667211}
   - component: {fileID: 558667216}
-  - component: {fileID: 558667215}
   m_Layer: 3
   m_Name: B2D_Player (1)
   m_TagString: Player
@@ -5956,6 +6636,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e197204466ee4b55b15f633484460db, type: 3}
   - {fileID: 21300000, guid: fa312707386f941bda5ffb33952938d6, type: 3}
   animationFPS: 8
+  footstepSource: {fileID: 558667216}
+  inputThreshold: 0.1
 --- !u!212 &558667214
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6014,21 +6696,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &558667215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558667209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e2b8ddf1b6849cca0b58574e561445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFootstep2D
-  rb: {fileID: 558667212}
-  footstepSource: {fileID: 558667216}
-  minSpeed: 0.1
 --- !u!82 &558667216
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6212,7 +6879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &578896169
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6327,10 +6994,10 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d5b1024322e141fc83856de7055d351, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   - {fileID: 2100000, guid: 2a62fee200e8ff446af82c711f28137e, type: 2}
   - {fileID: 2100000, guid: 2fda23243d8ea48539fe1452b820dbd5, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6861,6 +7528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 639802243}
   - component: {fileID: 639802244}
+  - component: {fileID: 639802245}
   m_Layer: 3
   m_Name: 1-1
   m_TagString: Untagged
@@ -6941,6 +7609,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &639802245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639802242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &654076601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7048,7 +7734,7 @@ MonoBehaviour:
   fade2D: {fileID: 1428685195}
   move2D: {fileID: 0}
   trigger2D: {fileID: 0}
-  sfx2D: {fileID: 0}
+  sfx2D: {fileID: 1428685197}
   enableDebugLog: 0
 --- !u!1 &670264086
 GameObject:
@@ -7093,6 +7779,7 @@ GameObject:
   - component: {fileID: 672931830}
   - component: {fileID: 672931832}
   - component: {fileID: 672931831}
+  - component: {fileID: 672931833}
   m_Layer: 3
   m_Name: p1.2c
   m_TagString: Untagged
@@ -7129,7 +7816,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleport2DOnTrigger
   playerTag: Player
   targetPoint: {fileID: 2014048799}
-  requiredGate: {fileID: 1494640063}
+  playOnPlayer: 1
+  audioSource: {fileID: 672931833}
+  teleportClip: {fileID: 0}
 --- !u!61 &672931832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7176,6 +7865,103 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0144825, y: 1.4649394}
   m_EdgeRadius: 0
+--- !u!82 &672931833
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672931829}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 2c681b6c4606f412389027e30a3982f9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &674748038
 GameObject:
   m_ObjectHideFlags: 0
@@ -7347,7 +8133,7 @@ MonoBehaviour:
   fade2D: {fileID: 498582169}
   move2D: {fileID: 0}
   trigger2D: {fileID: 498582171}
-  sfx2D: {fileID: 0}
+  sfx2D: {fileID: 498582172}
   enableDebugLog: 0
 --- !u!1 &713096720
 GameObject:
@@ -7724,6 +8510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 745940393}
   - component: {fileID: 745940394}
+  - component: {fileID: 745940395}
   m_Layer: 3
   m_Name: 1-3
   m_TagString: Untagged
@@ -7804,6 +8591,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &745940395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745940392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: dd4075875e50447e48ce73d7fa8d35a9, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 1
 --- !u!1 &747604397
 GameObject:
   m_ObjectHideFlags: 0
@@ -7814,6 +8619,8 @@ GameObject:
   m_Component:
   - component: {fileID: 747604399}
   - component: {fileID: 747604398}
+  - component: {fileID: 747604401}
+  - component: {fileID: 747604400}
   m_Layer: 3
   m_Name: damogu
   m_TagString: Untagged
@@ -7894,6 +8701,117 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1627057938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747604400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747604397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ce66e14cb894941957dde8bbb1f8c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnEnableSimple
+  playOnlyOnce: 1
+  overrideClip: {fileID: 0}
+--- !u!82 &747604401
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747604397}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 3b6f00baa4bf74f6e8af89d4fead9777, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &759500216
 GameObject:
   m_ObjectHideFlags: 0
@@ -8465,6 +9383,8 @@ GameObject:
   - component: {fileID: 846576773}
   - component: {fileID: 846576772}
   - component: {fileID: 846576771}
+  - component: {fileID: 846576775}
+  - component: {fileID: 846576774}
   m_Layer: 3
   m_Name: suidao
   m_TagString: Untagged
@@ -8501,10 +9421,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookPageTrigger2D
   spreadManager: {fileID: 1347377602}
   targetSpreadIndex: 3
+  useMouseClick: 0
+  usePlayerTrigger: 1
   playerTag: Player
-  fader: {fileID: 1227061462}
-  fadeToWhiteTime: 0.4
-  fadeFromWhiteTime: 0.4
+  triggerOnlyOnce: 0
+  enableDebugLog: 0
 --- !u!61 &846576772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8609,6 +9530,117 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &846576774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846576769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ce66e14cb894941957dde8bbb1f8c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnEnableSimple
+  playOnlyOnce: 1
+  overrideClip: {fileID: 0}
+--- !u!82 &846576775
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846576769}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: cf344b33030ae4db9824d3010f8f4a90, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &849486712
 GameObject:
   m_ObjectHideFlags: 0
@@ -8619,6 +9651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849486713}
   - component: {fileID: 849486714}
+  - component: {fileID: 849486715}
   m_Layer: 3
   m_Name: 1-10
   m_TagString: Untagged
@@ -8699,6 +9732,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &849486715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849486712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &856205359
 GameObject:
   m_ObjectHideFlags: 0
@@ -8879,7 +9930,6 @@ GameObject:
   - component: {fileID: 876703368}
   - component: {fileID: 876703367}
   - component: {fileID: 876703370}
-  - component: {fileID: 876703369}
   m_Layer: 3
   m_Name: B2D_Player
   m_TagString: Player
@@ -8985,6 +10035,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e197204466ee4b55b15f633484460db, type: 3}
   - {fileID: 21300000, guid: fa312707386f941bda5ffb33952938d6, type: 3}
   animationFPS: 8
+  footstepSource: {fileID: 876703370}
+  inputThreshold: 0.1
 --- !u!61 &876703367
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9058,21 +10110,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &876703369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876703363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e2b8ddf1b6849cca0b58574e561445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFootstep2D
-  rb: {fileID: 876703368}
-  footstepSource: {fileID: 876703370}
-  minSpeed: 0.1
 --- !u!82 &876703370
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9086,7 +10123,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 77717f0b6b0fa4dc9a7addf4ef8010d1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9420,6 +10457,7 @@ GameObject:
   - component: {fileID: 912809550}
   - component: {fileID: 912809549}
   - component: {fileID: 912809552}
+  - component: {fileID: 912809553}
   m_Layer: 3
   m_Name: Dialogue_cov
   m_TagString: Untagged
@@ -9439,7 +10477,10 @@ Transform:
   m_LocalPosition: {x: -1.76, y: 2.09, z: 15.524}
   m_LocalScale: {x: 0.49, y: 0.98, z: 0.49}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 2107343883}
+  - {fileID: 225149286}
+  - {fileID: 1076677193}
   m_Father: {fileID: 1448999093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &912809549
@@ -9588,6 +10629,103 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &912809553
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912809547}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &929088588
 GameObject:
   m_ObjectHideFlags: 0
@@ -9598,6 +10736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929088589}
   - component: {fileID: 929088590}
+  - component: {fileID: 929088591}
   m_Layer: 3
   m_Name: 4-4
   m_TagString: Untagged
@@ -9678,6 +10817,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &929088591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929088588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &930222242
 GameObject:
   m_ObjectHideFlags: 0
@@ -9884,6 +11041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958048297}
   - component: {fileID: 958048298}
+  - component: {fileID: 958048299}
   m_Layer: 3
   m_Name: 2-1
   m_TagString: Untagged
@@ -9964,6 +11122,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &958048299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958048296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1136398490}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &958219994
 GameObject:
   m_ObjectHideFlags: 0
@@ -10120,6 +11296,8 @@ GameObject:
   - component: {fileID: 982206526}
   - component: {fileID: 982206527}
   - component: {fileID: 982206530}
+  - component: {fileID: 982206532}
+  - component: {fileID: 982206531}
   m_Layer: 3
   m_Name: Cloud1
   m_TagString: Untagged
@@ -10310,6 +11488,118 @@ MonoBehaviour:
   extraDisableDelay: 0
   requiredGate: {fileID: 1324252918}
   enableDebugLog: 1
+--- !u!114 &982206531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982206524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09c92509b30d4523a368376cd423e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DClickPlaySFX
+  allowSelfClick: 0
+  playOnlyOnce: 1
+  enableDebugLog: 1
+--- !u!82 &982206532
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982206524}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: cf344b33030ae4db9824d3010f8f4a90, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &987386092
 GameObject:
   m_ObjectHideFlags: 0
@@ -10577,6 +11867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1025423262}
   - component: {fileID: 1025423263}
+  - component: {fileID: 1025423264}
   m_Layer: 3
   m_Name: 4-14
   m_TagString: Untagged
@@ -10657,6 +11948,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1025423264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025423261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1043424348
 GameObject:
   m_ObjectHideFlags: 0
@@ -10745,6 +12054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047161903}
   - component: {fileID: 1047161904}
+  - component: {fileID: 1047161905}
   m_Layer: 3
   m_Name: 2-2
   m_TagString: Untagged
@@ -10825,6 +12135,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1047161905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047161902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1136398490}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1054460677
 GameObject:
   m_ObjectHideFlags: 0
@@ -10899,6 +12227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076677193}
   - component: {fileID: 1076677194}
+  - component: {fileID: 1076677195}
   m_Layer: 3
   m_Name: PT0-3
   m_TagString: Untagged
@@ -10915,11 +12244,11 @@ Transform:
   m_GameObject: {fileID: 1076677192}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8, y: 2.11, z: 30.652573}
-  m_LocalScale: {x: 2, y: 4, z: 1}
+  m_LocalPosition: {x: -0.08163258, y: 0.020408144, z: 30.874638}
+  m_LocalScale: {x: 4.0816326, y: 4.0816326, z: 2.0408163}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1448999093}
+  m_Father: {fileID: 912809548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1076677194
 SpriteRenderer:
@@ -10979,6 +12308,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1076677195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076677192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 912809553}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1083956473
 GameObject:
   m_ObjectHideFlags: 0
@@ -11085,6 +12432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106279411}
   - component: {fileID: 1106279412}
+  - component: {fileID: 1106279413}
   m_Layer: 3
   m_Name: 1-7
   m_TagString: Untagged
@@ -11165,6 +12513,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1106279413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106279410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: dd4075875e50447e48ce73d7fa8d35a9, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 1
 --- !u!1 &1106468623
 GameObject:
   m_ObjectHideFlags: 0
@@ -11212,7 +12578,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleport2DOnTrigger
   playerTag: Player
   targetPoint: {fileID: 786597943}
-  requiredGate: {fileID: 0}
+  playOnPlayer: 1
+  audioSource: {fileID: 0}
+  teleportClip: {fileID: 0}
 --- !u!61 &1106468626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11304,6 +12672,7 @@ GameObject:
   - component: {fileID: 1136398488}
   - component: {fileID: 1136398487}
   - component: {fileID: 1136398486}
+  - component: {fileID: 1136398490}
   m_Layer: 3
   m_Name: Dialogue_p2
   m_TagString: Untagged
@@ -11477,6 +12846,103 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1136398490
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136398483}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1143324086
 GameObject:
   m_ObjectHideFlags: 0
@@ -11487,6 +12953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143324087}
   - component: {fileID: 1143324088}
+  - component: {fileID: 1143324089}
   m_Layer: 3
   m_Name: 1-5
   m_TagString: Untagged
@@ -11567,6 +13034,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1143324089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143324086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: dd4075875e50447e48ce73d7fa8d35a9, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 1
 --- !u!1 &1150733340
 GameObject:
   m_ObjectHideFlags: 0
@@ -11577,6 +13062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150733341}
   - component: {fileID: 1150733342}
+  - component: {fileID: 1150733343}
   m_Layer: 3
   m_Name: 2-3
   m_TagString: Untagged
@@ -11657,6 +13143,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1150733343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150733340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1136398490}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1155504891
 GameObject:
   m_ObjectHideFlags: 0
@@ -11969,6 +13473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1215712799}
   - component: {fileID: 1215712800}
+  - component: {fileID: 1215712801}
   m_Layer: 3
   m_Name: 2-5
   m_TagString: Untagged
@@ -12049,6 +13554,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1215712801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215712798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 26266885}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1220709558
 GameObject:
   m_ObjectHideFlags: 0
@@ -12214,7 +13737,7 @@ MonoBehaviour:
   fade2D: {fileID: 457111436}
   move2D: {fileID: 0}
   trigger2D: {fileID: 457111440}
-  sfx2D: {fileID: 0}
+  sfx2D: {fileID: 457111441}
   enableDebugLog: 0
 --- !u!1 &1226421938
 GameObject:
@@ -12590,6 +14113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253860370}
   - component: {fileID: 1253860371}
+  - component: {fileID: 1253860372}
   m_Layer: 3
   m_Name: 4-6
   m_TagString: Untagged
@@ -12670,6 +14194,172 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1253860372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253860369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
+--- !u!1 &1256284227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1256284230}
+  - component: {fileID: 1256284229}
+  - component: {fileID: 1256284228}
+  m_Layer: 0
+  m_Name: BGMManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1256284228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256284227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7211c24aa304bbfac788a6bbb5956c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookBGMPerSpread
+  spreadBGMs:
+  - {fileID: 8300000, guid: 2366be3e1de164af6becb664a5bda9ff, type: 3}
+  - {fileID: 8300000, guid: 2366be3e1de164af6becb664a5bda9ff, type: 3}
+  - {fileID: 8300000, guid: 5a9670ece36a644eda4b48ab1716c4cc, type: 3}
+  - {fileID: 0}
+  fadeTime: 1
+--- !u!82 &1256284229
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256284227}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1256284230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256284227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.24732, y: 0.65405, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1262232845
 GameObject:
   m_ObjectHideFlags: 0
@@ -12680,6 +14370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262232846}
   - component: {fileID: 1262232847}
+  - component: {fileID: 1262232848}
   m_Layer: 3
   m_Name: 1-8
   m_TagString: Untagged
@@ -12760,6 +14451,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1262232848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262232845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1272476494
 GameObject:
   m_ObjectHideFlags: 0
@@ -13258,26 +14967,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a663fd5c05db43189b18a3fd978cabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book2DSpreadManager
-  book: {fileID: 2019705703}
   spreads:
-  - label: cover
-    spreadRoot: {fileID: 1448999092}
-    bookPageNumber: 0
-  - label: sp1
-    spreadRoot: {fileID: 438207444}
-    bookPageNumber: 1
-  - label: sp2
-    spreadRoot: {fileID: 1627057937}
-    bookPageNumber: 2
-  - label: sp3
-    spreadRoot: {fileID: 1307529496}
-    bookPageNumber: 3
+  - {fileID: 1448999092}
+  - {fileID: 438207444}
+  - {fileID: 1627057937}
+  - {fileID: 1307529496}
   startSpreadIndex: 0
-  startState: 0
-  startStateAnimTime: 0
-  turnTimeType: 0
-  turnTime: 1
-  openTime: 1
+  player: {fileID: 876703366}
+  playerSpawnPoints:
+  - {fileID: 558667210}
+  - {fileID: 111015609}
+  movePlayerOnSpreadChange: 1
+  bgmSource: {fileID: 1256284229}
+  spreadBGMs:
+  - {fileID: 8300000, guid: 2366be3e1de164af6becb664a5bda9ff, type: 3}
+  - {fileID: 8300000, guid: 2366be3e1de164af6becb664a5bda9ff, type: 3}
+  - {fileID: 8300000, guid: 5a9670ece36a644eda4b48ab1716c4cc, type: 3}
 --- !u!1 &1348071987
 GameObject:
   m_ObjectHideFlags: 0
@@ -13786,6 +15491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1382256340}
   - component: {fileID: 1382256341}
+  - component: {fileID: 1382256342}
   m_Layer: 3
   m_Name: 4-20
   m_TagString: Untagged
@@ -13866,6 +15572,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1382256342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382256339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 477288739}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1388441443
 GameObject:
   m_ObjectHideFlags: 0
@@ -13876,6 +15600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1388441444}
   - component: {fileID: 1388441445}
+  - component: {fileID: 1388441446}
   m_Layer: 3
   m_Name: 4-3
   m_TagString: Untagged
@@ -13956,6 +15681,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1388441446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388441443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &1395272642
 GameObject:
   m_ObjectHideFlags: 0
@@ -14078,7 +15821,7 @@ MonoBehaviour:
   fade2D: {fileID: 0}
   move2D: {fileID: 0}
   trigger2D: {fileID: 982206527}
-  sfx2D: {fileID: 0}
+  sfx2D: {fileID: 982206531}
   enableDebugLog: 1
 --- !u!1 &1413184778
 GameObject:
@@ -14202,6 +15945,8 @@ GameObject:
   - component: {fileID: 1428685194}
   - component: {fileID: 1428685196}
   - component: {fileID: 1428685195}
+  - component: {fileID: 1428685198}
+  - component: {fileID: 1428685197}
   m_Layer: 3
   m_Name: Cloud3
   m_TagString: Untagged
@@ -14348,6 +16093,118 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2184392, y: 1.2087092}
   m_EdgeRadius: 0
+--- !u!114 &1428685197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428685192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09c92509b30d4523a368376cd423e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DClickPlaySFX
+  allowSelfClick: 0
+  playOnlyOnce: 1
+  enableDebugLog: 0
+--- !u!82 &1428685198
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428685192}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: cf344b33030ae4db9824d3010f8f4a90, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1431508897
 GameObject:
   m_ObjectHideFlags: 0
@@ -14427,6 +16284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1433426796}
   - component: {fileID: 1433426797}
+  - component: {fileID: 1433426798}
   m_Layer: 3
   m_Name: 4-8
   m_TagString: Untagged
@@ -14507,6 +16365,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1433426798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433426795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1448999092
 GameObject:
   m_ObjectHideFlags: 0
@@ -14538,9 +16414,6 @@ Transform:
   m_Children:
   - {fileID: 876703365}
   - {fileID: 912809548}
-  - {fileID: 2107343883}
-  - {fileID: 225149286}
-  - {fileID: 1076677193}
   - {fileID: 1650536213}
   - {fileID: 1809212865}
   m_Father: {fileID: 0}
@@ -14688,6 +16561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1468126388}
   - component: {fileID: 1468126389}
+  - component: {fileID: 1468126390}
   m_Layer: 3
   m_Name: 4-11
   m_TagString: Untagged
@@ -14768,6 +16642,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1468126390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468126387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &1469225121
 GameObject:
   m_ObjectHideFlags: 0
@@ -14843,6 +16735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1475180747}
   - component: {fileID: 1475180748}
+  - component: {fileID: 1475180749}
   m_Layer: 3
   m_Name: 2-4
   m_TagString: Untagged
@@ -14923,6 +16816,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1475180749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475180746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1136398490}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1475592701
 GameObject:
   m_ObjectHideFlags: 0
@@ -15885,6 +17796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1620865080}
   - component: {fileID: 1620865081}
+  - component: {fileID: 1620865082}
   m_Layer: 3
   m_Name: 4-5
   m_TagString: Untagged
@@ -15965,6 +17877,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1620865082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620865079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &1627057937
 GameObject:
   m_ObjectHideFlags: 0
@@ -16057,7 +17987,6 @@ GameObject:
   - component: {fileID: 1650536213}
   - component: {fileID: 1650536215}
   - component: {fileID: 1650536216}
-  - component: {fileID: 1650536217}
   m_Layer: 3
   m_Name: BookPageTrigger2D
   m_TagString: Untagged
@@ -16140,33 +18069,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookPageTrigger2D
   spreadManager: {fileID: 1347377602}
   targetSpreadIndex: 1
+  useMouseClick: 0
+  usePlayerTrigger: 1
   playerTag: Player
-  fader: {fileID: 1227061462}
-  fadeToWhiteTime: 0.4
-  fadeFromWhiteTime: 0.1
---- !u!114 &1650536217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650536212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7193b31a4daa498e8a39a6f46b80ee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BookCoverTrigger2D_Fade
-  book: {fileID: 2019705703}
-  spreadManager: {fileID: 1347377602}
-  targetSpreadIndex: 1
-  fader: {fileID: 1227061462}
-  fadeToWhiteTime: 0.4
-  fadeFromWhiteTime: 0.4
-  openAnimationTime: 1
-  playerTag: Player
-  lockPlayerMove: 1
-  playerMoveScript: {fileID: 876703366}
-  triggerOnlyOnce: 1
+  triggerOnlyOnce: 0
   enableDebugLog: 0
 --- !u!1 &1654665055
 GameObject:
@@ -16242,6 +18148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1659517272}
   - component: {fileID: 1659517273}
+  - component: {fileID: 1659517274}
   m_Layer: 3
   m_Name: 1-6
   m_TagString: Untagged
@@ -16322,6 +18229,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1659517274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659517271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1670370696
 GameObject:
   m_ObjectHideFlags: 0
@@ -16675,6 +18600,7 @@ GameObject:
   - component: {fileID: 1715635452}
   - component: {fileID: 1715635451}
   - component: {fileID: 1715635450}
+  - component: {fileID: 1715635455}
   m_Layer: 3
   m_Name: Dialogue_p4.5
   m_TagString: Untagged
@@ -16887,6 +18813,103 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1715635455
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715635448}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1719248826
 GameObject:
   m_ObjectHideFlags: 0
@@ -17176,6 +19199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1763894235}
   - component: {fileID: 1763894236}
+  - component: {fileID: 1763894237}
   m_Layer: 3
   m_Name: 4-19
   m_TagString: Untagged
@@ -17256,6 +19280,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1763894237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763894234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 477288739}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &1770167310
 GameObject:
   m_ObjectHideFlags: 0
@@ -17510,7 +19552,7 @@ SpriteRenderer:
   m_SortingLayerID: -630126829
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d111cbbb4f356404bb9a68954cc2180a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d96d604079ad04fadadef295221f8033, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17667,6 +19709,7 @@ GameObject:
   - component: {fileID: 1825538746}
   - component: {fileID: 1825538745}
   - component: {fileID: 1825538744}
+  - component: {fileID: 1825538747}
   m_Layer: 3
   m_Name: p1.1c
   m_TagString: Untagged
@@ -17688,7 +19731,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleport2DOnTrigger
   playerTag: Player
   targetPoint: {fileID: 1670370697}
-  requiredGate: {fileID: 139818503}
+  playOnPlayer: 1
+  audioSource: {fileID: 1825538747}
+  teleportClip: {fileID: 8300000, guid: 2c681b6c4606f412389027e30a3982f9, type: 3}
 --- !u!61 &1825538745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17750,6 +19795,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 438207445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1825538747
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825538743}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1825758570
 GameObject:
   m_ObjectHideFlags: 0
@@ -17826,6 +19968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1847323763}
   - component: {fileID: 1847323764}
+  - component: {fileID: 1847323765}
   m_Layer: 3
   m_Name: 1-4
   m_TagString: Untagged
@@ -17906,6 +20049,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1847323765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847323762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1847570157
 GameObject:
   m_ObjectHideFlags: 0
@@ -17916,6 +20077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1847570158}
   - component: {fileID: 1847570159}
+  - component: {fileID: 1847570160}
   m_Layer: 3
   m_Name: 2-6
   m_TagString: Untagged
@@ -17996,6 +20158,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1847570160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847570157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 26266885}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1848656782
 GameObject:
   m_ObjectHideFlags: 0
@@ -18504,7 +20684,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d5b1024322e141fc83856de7055d351, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18560,6 +20740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1888956607}
   - component: {fileID: 1888956608}
+  - component: {fileID: 1888956609}
   m_Layer: 3
   m_Name: 4-18
   m_TagString: Untagged
@@ -18640,6 +20821,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1888956609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888956606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 477288739}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &1893543021
 GameObject:
   m_ObjectHideFlags: 0
@@ -19110,6 +21309,8 @@ GameObject:
   - component: {fileID: 1923095348}
   - component: {fileID: 1923095347}
   - component: {fileID: 1923095346}
+  - component: {fileID: 1923095350}
+  - component: {fileID: 1923095349}
   m_Layer: 3
   m_Name: B2D_p2.5
   m_TagString: Untagged
@@ -19205,10 +21406,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookPageTrigger2D
   spreadManager: {fileID: 1347377602}
   targetSpreadIndex: 2
+  useMouseClick: 0
+  usePlayerTrigger: 1
   playerTag: Player
-  fader: {fileID: 1227061462}
-  fadeToWhiteTime: 0.4
-  fadeFromWhiteTime: 0.1
+  triggerOnlyOnce: 0
+  enableDebugLog: 0
 --- !u!114 &1923095347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19223,10 +21425,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookPageTrigger2D
   spreadManager: {fileID: 1347377602}
   targetSpreadIndex: 1
+  useMouseClick: 0
+  usePlayerTrigger: 1
   playerTag: Player
-  fader: {fileID: 1227061462}
-  fadeToWhiteTime: 0.4
-  fadeFromWhiteTime: 0.4
+  triggerOnlyOnce: 0
+  enableDebugLog: 0
 --- !u!58 &1923095348
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19263,6 +21466,117 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 1.31494, y: -0.5822524}
   m_Radius: 0.23182644
+--- !u!114 &1923095349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923095343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ce66e14cb894941957dde8bbb1f8c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnEnableSimple
+  playOnlyOnce: 1
+  overrideClip: {fileID: 0}
+--- !u!82 &1923095350
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923095343}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: bd7b6ddb0191e48b4a88857669563c54, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1933949488
 GameObject:
   m_ObjectHideFlags: 0
@@ -19273,6 +21587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933949489}
   - component: {fileID: 1933949490}
+  - component: {fileID: 1933949491}
   m_Layer: 3
   m_Name: 4-15
   m_TagString: Untagged
@@ -19353,6 +21668,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1933949491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933949488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &1943119558
 GameObject:
   m_ObjectHideFlags: 0
@@ -19817,7 +22150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bookController: {fileID: 51113367}
-  currentState: 2
+  currentState: 0
   standinsTransform: {fileID: 469109691}
   pagesTransform: {fileID: 1327878676}
   standinQualities: 0000000000000000000000000000000000000000
@@ -19829,8 +22162,8 @@ MonoBehaviour:
   - {fileID: 140204739}
   materials:
   - {fileID: 2100000, guid: 5d5b1024322e141fc83856de7055d351, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
-  - {fileID: 2100000, guid: e974ea5b160834541aedf09f88699069, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
+  - {fileID: 2100000, guid: ab7f2e57258b0436c8df14192de0919f, type: 2}
   - {fileID: 2100000, guid: 2fda23243d8ea48539fe1452b820dbd5, type: 2}
   - {fileID: 2100000, guid: 2a62fee200e8ff446af82c711f28137e, type: 2}
   materialMappings:
@@ -20020,6 +22353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022590746}
   - component: {fileID: 2022590747}
+  - component: {fileID: 2022590748}
   m_Layer: 3
   m_Name: 1-11
   m_TagString: Untagged
@@ -20036,8 +22370,8 @@ Transform:
   m_GameObject: {fileID: 2022590745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.20408143, y: 3, z: 30.874638}
-  m_LocalScale: {x: 7.142857, y: 7.142857, z: 3.5714285}
+  m_LocalPosition: {x: -0.20408143, y: 2.9761, z: 30.874638}
+  m_LocalScale: {x: 7.142857, y: 7.332143, z: 3.5714285}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 372019700}
@@ -20100,6 +22434,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2022590748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022590745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 372019706}
+  clip: {fileID: 8300000, guid: dd4075875e50447e48ce73d7fa8d35a9, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 1
 --- !u!1 &2028625735
 GameObject:
   m_ObjectHideFlags: 0
@@ -20232,6 +22584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079622599}
   - component: {fileID: 2079622600}
+  - component: {fileID: 2079622601}
   m_Layer: 3
   m_Name: 4-2
   m_TagString: Untagged
@@ -20312,6 +22665,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2079622601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079622598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &2081196363
 GameObject:
   m_ObjectHideFlags: 0
@@ -20322,6 +22693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2081196364}
   - component: {fileID: 2081196365}
+  - component: {fileID: 2081196366}
   m_Layer: 3
   m_Name: 4-13
   m_TagString: Untagged
@@ -20402,6 +22774,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2081196366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081196363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 1715635455}
+  clip: {fileID: 8300000, guid: 179a85f246f6548cb9ebb2abd971c607, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.1
 --- !u!1 &2107343882
 GameObject:
   m_ObjectHideFlags: 0
@@ -20412,6 +22802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2107343883}
   - component: {fileID: 2107343884}
+  - component: {fileID: 2107343885}
   m_Layer: 3
   m_Name: PT0-1
   m_TagString: Untagged
@@ -20428,11 +22819,11 @@ Transform:
   m_GameObject: {fileID: 2107343882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7349, y: 2.0217, z: 30.652573}
-  m_LocalScale: {x: 2.1821375, y: 4.2759, z: 1}
+  m_LocalPosition: {x: 0.051224474, y: -0.069693886, z: 30.874638}
+  m_LocalScale: {x: 4.453342, y: 4.363163, z: 2.0408163}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1448999093}
+  m_Father: {fileID: 912809548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2107343884
 SpriteRenderer:
@@ -20492,6 +22883,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2107343885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107343882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a7cf0367f2a4eddaccc406081162e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book2DDialoguePlaySFXOnEnable
+  audioSource: {fileID: 912809553}
+  clip: {fileID: 8300000, guid: fbf7cef7dd3d54ff1a5dad78a8207705, type: 3}
+  randomizePitch: 1
+  minPitch: 0.95
+  maxPitch: 1.05
+  volume: 0.2
 --- !u!1 &2116804729
 GameObject:
   m_ObjectHideFlags: 0
@@ -20621,3 +23030,4 @@ SceneRoots:
   - {fileID: 1627057938}
   - {fileID: 1307529497}
   - {fileID: 912252403}
+  - {fileID: 1256284230}

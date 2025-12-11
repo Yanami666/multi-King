@@ -3,10 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// 控制一个 SpriteRenderer 的 alpha 渐变（0~1）
-/// 自己在 Update 里跑，不再用外面协程。
-///
-/// Controls the alpha of a SpriteRenderer from 0 to 1
-/// using an internal state machine with optional onComplete callback.
+/// Controls the alpha of a SpriteRenderer from 0 to 1.
 /// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteAlphaFader : MonoBehaviour
@@ -57,8 +54,7 @@ public class SpriteAlphaFader : MonoBehaviour
     }
 
     /// <summary>
-    /// 开始渐变到指定 alpha（0~1）
-    /// Start fading to target alpha (0~1).
+    /// 直接指定目标 alpha（0~1） 的渐变
     /// </summary>
     public void FadeTo(float targetAlpha, float duration, Action onComplete = null)
     {
@@ -76,7 +72,6 @@ public class SpriteAlphaFader : MonoBehaviour
 
     /// <summary>
     /// 立刻设定 alpha，不渐变。
-    /// Instantly set alpha without fading.
     /// </summary>
     public void SetAlpha(float alpha)
     {
@@ -91,8 +86,21 @@ public class SpriteAlphaFader : MonoBehaviour
         _onComplete = null;
     }
 
-    internal object FadePercent(float v1, float v2, float fadeDuration)
+    /// <summary>
+    /// 方便用“百分比”来写，0~100。
+    /// fromPercent 通常可以写 0 或 100。
+    /// </summary>
+    public void FadePercent(float fromPercent, float toPercent, float duration, Action onComplete = null)
     {
-        throw new NotImplementedException();
+        if (targetSprite == null)
+            return;
+
+        // 转成 0~1
+        float fromA = Mathf.Clamp01(fromPercent / 100f);
+        float toA = Mathf.Clamp01(toPercent / 100f);
+
+        // 先把起始 alpha 设好，再调用 FadeTo
+        SetAlpha(fromA);
+        FadeTo(toA, duration, onComplete);
     }
 }
