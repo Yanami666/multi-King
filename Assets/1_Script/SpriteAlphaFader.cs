@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// 控制一个 SpriteRenderer 的 alpha 渐变（0~1）
-/// Controls the alpha of a SpriteRenderer from 0 to 1.
+/// 可用：
+/// - SetAlpha() 直接设定透明度
+/// - FadeTo() 从当前 alpha 渐变到目标 alpha
+/// - FadePercent() 用 0~100 百分比去渐变
 /// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteAlphaFader : MonoBehaviour
@@ -23,7 +27,7 @@ public class SpriteAlphaFader : MonoBehaviour
         if (targetSprite == null)
             targetSprite = GetComponent<SpriteRenderer>();
 
-        // 启动时强制透明，避免一开场白屏
+        // 默认：一开始完全透明（你这块图是用来当遮罩的）
         if (targetSprite != null)
         {
             Color c = targetSprite.color;
@@ -41,9 +45,7 @@ public class SpriteAlphaFader : MonoBehaviour
         float t = _duration <= 0f ? 1f : Mathf.Clamp01(_timer / _duration);
         float a = Mathf.Lerp(_startAlpha, _targetAlpha, t);
 
-        Color c = targetSprite.color;
-        c.a = a;
-        targetSprite.color = c;
+        SetAlpha(a);
 
         if (t >= 1f)
         {
@@ -54,24 +56,7 @@ public class SpriteAlphaFader : MonoBehaviour
     }
 
     /// <summary>
-    /// 直接指定目标 alpha（0~1） 的渐变
-    /// </summary>
-    public void FadeTo(float targetAlpha, float duration, Action onComplete = null)
-    {
-        if (targetSprite == null)
-            return;
-
-        Color c = targetSprite.color;
-        _startAlpha = c.a;
-        _targetAlpha = Mathf.Clamp01(targetAlpha);
-        _duration = duration;
-        _timer = 0f;
-        _onComplete = onComplete;
-        _isFading = true;
-    }
-
-    /// <summary>
-    /// 立刻设定 alpha，不渐变。
+    /// 立刻设置 alpha，不做渐变。
     /// </summary>
     public void SetAlpha(float alpha)
     {
@@ -82,25 +67,57 @@ public class SpriteAlphaFader : MonoBehaviour
         Color c = targetSprite.color;
         c.a = alpha;
         targetSprite.color = c;
+
         _isFading = false;
         _onComplete = null;
     }
 
     /// <summary>
-    /// 方便用“百分比”来写，0~100。
-    /// fromPercent 通常可以写 0 或 100。
+    /// 从当前 alpha 渐变到目标 alpha（0~1）。
     /// </summary>
-    public void FadePercent(float fromPercent, float toPercent, float duration, Action onComplete = null)
+    public void FadeTo(float targetAlpha, float duration, Action onComplete = null)
     {
         if (targetSprite == null)
             return;
 
-        // 转成 0~1
-        float fromA = Mathf.Clamp01(fromPercent / 100f);
-        float toA = Mathf.Clamp01(toPercent / 100f);
+        _startAlpha = targetSprite.color.a;
+        _targetAlpha = Mathf.Clamp01(targetAlpha);
+        _duration = duration;
+        _timer = 0f;
+        _onComplete = onComplete;
+        _isFading = true;
+    }
 
-        // 先把起始 alpha 设好，再调用 FadeTo
-        SetAlpha(fromA);
-        FadeTo(toA, duration, onComplete);
+    /// <summary>
+    /// 使用 0~100% 控制渐变，比如从 100 到 0 = 从不透明到透明。
+    /// </summary>
+    public IEnumerator FadePercent(float fromPercent, float toPercent, float duration)
+    {
+        if (targetSprite == null)
+            yield break;
+
+        float fromAlpha = Mathf.Clamp01(fromPercent / 100f);
+        float toAlpha = Mathf.Clamp01(toPercent / 100f);
+
+        // 起点
+        SetAlpha(fromAlpha);
+
+        if (duration <= 0f)
+        {
+            SetAlpha(toAlpha);
+            yield break;
+        }
+
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / duration);
+            float a = Mathf.Lerp(fromAlpha, toAlpha, k);
+            SetAlpha(a);
+            yield return null;
+        }
+
+        SetAlpha(toAlpha);
     }
 }
